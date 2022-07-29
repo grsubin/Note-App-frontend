@@ -1,0 +1,73 @@
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Sign Up</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-person"></i></span>
+                        <input type="text" formControlName="username" name="username" placeholder="Username"
+                            [ngClass]="{'is-invalid': submitted && f.username.errors}" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-envelope"></i></span>
+                        <input type="email" formControlName="email" name="email" placeholder="Email"
+                            [ngClass]="{'is-invalid': submitted && f.email.errors}" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email is required</div>
+                        </div>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-telephone-fill"></i></span>
+                        <input (keypress)="keyPress($event)" type="tel" formControlName="phone" name="phone" placeholder="Phone"
+                            [ngClass]="{'is-invalid': submitted && f.phone.errors}" />
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                            <div *ngIf="f.phone.errors.pattern">Phone number must be a number</div>
+                            
+                        </div>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-lock"></i></span>
+                        <input type="password" formControlName="password" name="password" placeholder="Password"
+                            [ngClass]="{'is-invalid': submitted && f.password.errors}" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col_half">
+                            <div class="input_field"> <span><i aria-hidden="true" class="bi bi-file-person"></i></span>
+                                <input type="text" formControlName="firstName" name="name" placeholder="First Name"
+                                    [ngClass]="{'is-invalid': submitted && f.firstName.errors}" />
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">Firstname is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col_half">
+                            <div class="input_field"> <span><i aria-hidden="true" class="bi bi-file-person"></i></span>
+                                <input type="text" formControlName="lastName" name="name" placeholder="Last Name"
+                                    [ngClass]="{'is-invalid': submitted && f.lastName.errors}" />
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Lastname is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input  type="submit" value="Register" class="button">
+                        <button routerLink="../login" class="button">Log In </button>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

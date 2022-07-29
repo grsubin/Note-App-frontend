@@ -1,0 +1,149 @@
+$yellow:#f5ba1a;
+$black:#000000;
+$grey:#cccccc;
+
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	background: #f2f2f2;
+}
+.clearfix {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+		visibility: hidden;
+		height: 0;
+	}
+}
+.form_wrapper {
+	background: #fff;
+	width: 400px;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 25px;
+	margin: 8% auto 0;
+	position: relative;
+	z-index: 1;
+	border-top: 5px solid $yellow;
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+
+	h2 {
+		font-size: 1.5em;
+		line-height: 1.5em;
+		margin: 0;
+	}
+	.title_container {
+		text-align: center;
+		padding-bottom: 15px;
+	}
+	h3 {
+		font-size: 1.1em;
+		font-weight: normal;
+		line-height: 1.5em;
+		margin: 0;
+	}
+    label {
+        font-size: 12px;
+    }
+	.row {
+		margin: 10px -15px;
+		>div {
+			padding: 0 15px;
+			box-sizing: border-box;
+		}
+	}
+	.col_half {
+		width: 50%;
+		float: left;
+	}
+	.input_field {
+		position: relative;
+		margin-bottom: 20px;
+
+		>span {
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: #333;
+			height: 35.5px;
+			border-right: 1px solid $grey;
+			text-align: center;
+			width: 30px;
+
+		}
+	}
+	.input_field > span {
+			padding-top: 5px;
+		}
+
+
+	input {
+    &[type="text"], &[type="email"], &[type="password"], &[type = "tel"] {
+      width: 100%;
+      padding: 8px 10px 9px 35px;
+      height: 35px;
+      border: 1px solid $grey;
+      box-sizing: border-box;
+      outline: none;
+
+    }
+  }
+  .button {
+	background: $yellow;
+	height: 35px;
+	line-height: 35px;
+	width: 100%;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: #fff;
+	font-size: 1.1em;
+	margin-bottom: 10px;
+	&:hover {
+		background: darken($yellow,7%);
+	}
+	&:focus {
+		background: darken($yellow,7%);
+	}
+} 
+
+}
+.form_container {
+	.row {
+		.col_half.last {
+			border-left: 1px solid $grey;
+		}
+	}
+}
+
+
+
+@media (max-width: 600px) {
+	.form_wrapper {
+		.col_half {
+			width: 100%;
+			float: none;
+		}
+	}
+	.bottom_row {
+		.col_half {
+			width: 50%;
+			float: left;
+		}
+	}
+	.form_container {
+		.row {
+			.col_half.last {
+				border-left: none;
+			}
+		}
+	}
+	.remember_me {
+		padding-bottom: 20px;
+	}
+}
+

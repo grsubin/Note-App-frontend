@@ -1,0 +1,31 @@
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Log in</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-person"></i></span>
+                        <input type="text" formControlName="username" name="username" placeholder="Username"
+                            [ngClass]="{'is-invalid': submitted && f.username.errors}" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="bi bi-lock"></i></span>
+                        <input type="password" formControlName="password" name="password" placeholder="Password"
+                            [ngClass]="{'is-invalid': submitted && f.password.errors}" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input  type="submit" value="Login" class="button">
+                        <button routerLink="../register" class = "button">Register </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
