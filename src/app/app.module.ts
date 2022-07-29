@@ -8,21 +8,25 @@ import { AuthenticationService } from './core/authentication.service';
 import { NoteDetailsComponent } from './notes/note-details/note-details.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { UserModule } from './user/user.module';
+import { NotesModule } from './notes/notes.module';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NoteDetailsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    
+    AuthenticationModule,
+    UserModule,
+    NotesModule,    
     ToastrModule.forRoot({
       timeOut: 1000,
       preventDuplicates: true

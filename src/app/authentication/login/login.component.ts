@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
-import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +16,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loading =false;
 
+  returnUrl: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -26,10 +27,19 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
+
+
+
+
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+
+
   }
 
   get f() {return this.loginForm.controls;}
@@ -55,8 +65,8 @@ export class LoginComponent implements OnInit {
       },
       error: res => {
         console.log(res)
-          this.toastr.error(" ", res.error?.message);
-          this.loading = false;
+        this.toastr.error(" ", res.error?.message);
+        this.loading = false;
       }
     });
 

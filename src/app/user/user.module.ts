@@ -14,7 +14,6 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
     UserRoutingModule
   ],
   exports: [
-    UserdetailsComponent
   ]
 })
 export class UserModule { }
