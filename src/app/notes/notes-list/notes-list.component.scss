@@ -1,0 +1,83 @@
+.min-wrapper {
+  height: 89vh;
+}
+
+.wrapper > div {
+  height: 100px;
+  margin: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: space-between;
+}
+.title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.add-note {
+  // background-color: blue;
+  display: flex;
+  align-items: center;
+}
+
+.btn-add {
+  border: 0;
+  border-radius: 25px;
+  display: flex;
+  padding: 20px;
+  height: min-content;
+
+  flex-basis: 100%;
+}
+
+.btn-add > span {
+  padding-right: 50px;
+}
+
+.btn-add:hover {
+  background-color: darkgray;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.note {
+  background-color: lightgray;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.note-date {
+  font-style: italic;
+  font-weight: 100;
+}
+
+.note:hover {
+  background-color: darkgray;
+}
+
+.note-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-delete-note {
+  border-radius: 10px;
+  border: 0;
+}
+
+.btn-delete-note:hover {
+  filter: brightness(85%);
+}
+
+.active {
+  filter: brightness(70%);
+}

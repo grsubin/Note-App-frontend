@@ -1,0 +1,36 @@
+$yellow: #f5ba1a;
+$black: #000000;
+$grey: #cccccc;
+
+.wrapper {
+  background: #fff;
+  border-top: 5px solid $yellow;
+}
+
+// .min-wrapper {
+//   height: 89vh;
+// }
+
+// .nav-bar {
+//   // min-width: 220px;
+//   width: max-content;
+// }
+
+.min-wrapper {
+  display: flex;
+}
+
+.nav-bar {
+  width: max-content;
+}
+
+@media (max-width: 570px) {
+  .min-wrapper {
+    flex-direction: column;
+    // align-items: center;
+    min-width: max-content;
+  }
+  .nav-bar {
+    width: 100%;
+  }
+}

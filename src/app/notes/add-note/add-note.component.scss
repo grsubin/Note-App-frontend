@@ -7,26 +7,21 @@
   margin: 10px;
 }
 
-.note-date {
-  font-style: italic;
-  font-weight: 100;
-  padding-left: 10px;
-}
-
-.note-date-wrapper {
-  display: flex;
-  font-weight: 400;
-}
-
 .note-body {
   padding: 10px;
   height: 500px;
   border-radius: 10px;
   background-color: lightgray;
-  overflow: scroll;
 }
 
-.btn-edit-note {
+.note-body > textarea {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 5px;
+}
+
+.btn-save-note {
   align-self: flex-start;
   padding: 10px;
   border: 0;
@@ -34,6 +29,6 @@
   margin: 10px;
 }
 
-.btn-edit-note:hover {
+.btn-save-note:hover {
   filter: brightness(85%);
 }

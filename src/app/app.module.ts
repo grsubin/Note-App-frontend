@@ -1,24 +1,20 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthenticationService } from './core/authentication.service';
-import { NoteDetailsComponent } from './notes/note-details/note-details.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { UserModule } from './user/user.module';
 import { NotesModule } from './notes/notes.module';
-
-
-
+import { AuthenticationService } from './core/_services/authentication.service';
+import { NotesService } from './core/_services/notes.service';
+import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,13 +22,21 @@ import { NotesModule } from './notes/notes.module';
     HttpClientModule,
     AuthenticationModule,
     UserModule,
-    NotesModule,    
+    NotesModule,
     ToastrModule.forRoot({
       timeOut: 1000,
-      preventDuplicates: true
-    })
+      preventDuplicates: true,
+    }),
   ],
-  providers: [AuthenticationService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthenticationService,
+    NotesService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

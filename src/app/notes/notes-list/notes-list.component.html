@@ -1,2 +1,40 @@
-<p>notes-list works!</p>
-<router-outlet></router-outlet>
+<div class="row min-wrapper">
+  <div class="border-start col-5">
+    <div class="wrapper">
+      <div class="title">
+        <h2><strong>My Notes</strong></h2>
+      </div>
+      <div class="add-note">
+        <button routerLink="./add" class="btn-add">
+          <span><i aria-hidden="true" class="bi bi-plus-lg"></i></span>Add notes
+        </button>
+      </div>
+      <div class="notes-list">
+        <div
+          *ngFor="let note of noteList"
+          routerLink="/user/notes/view/{{
+            note.id + '-' + note.title.split(' ').join('-')
+          }}"
+          routerLinkActive="active"
+          class="note"
+        >
+          <div class="note-top">
+            <div class="note-date">
+              {{
+                (!note.created_at ? note.updated_at : note.created_at)
+                  | date: "mediumDate"
+              }}
+            </div>
+            <div class="note-delete">
+              <button (click)="onDeleteNote(note.id)" class="btn-delete-note">
+                <span><i aria-hidden="true" class="bi bi-trash3"></i></span>
+              </button>
+            </div>
+          </div>
+          <div class="note-title">{{ note?.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-start col-7"><router-outlet></router-outlet></div>
+</div>

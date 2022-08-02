@@ -1,0 +1,22 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="wrapper" action="">
+  <div class="note-title">
+    <h3>
+      <input formControlName="title" type="text" value=" My first Note" />
+    </h3>
+  </div>
+  <div class="note-date-wrapper">
+    Last Modified:
+    <div class="note-date">Jan 12</div>
+  </div>
+  <div class="note-body">
+    <textarea formControlName="body" rows="20">
+        This is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis
+    is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is
+    bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is
+    bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is
+    bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is
+    bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is bodyThis is
+    </textarea>
+  </div>
+  <button type="submit" class="btn-save-note">Save</button>
+</form>

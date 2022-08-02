@@ -1,0 +1,21 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="wrapper">
+  <div class="note-title">
+    <h3>
+      <input
+        formControlName="title"
+        name="title"
+        type="text"
+        placeholder="Note Title"
+      />
+    </h3>
+  </div>
+
+  <div class="note-body">
+    <textarea
+      formControlName="body"
+      name="body"
+      placeholder=" Note description..."
+    ></textarea>
+  </div>
+  <button type="submit" class="btn-save-note">Save</button>
+</form>
