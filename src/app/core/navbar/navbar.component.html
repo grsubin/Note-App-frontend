@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<div class="wrapper">
+  <div class="container wrapper-top">
+    <div class="container-fluid border user-profile mt-5 shadow">
+      <div class="user-image">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+          alt=""
+          class="rounded-circle"
+        />
+      </div>
+      <div class="user-name text-capitalize">subin gurung</div>
+    </div>
+  </div>
+  <div class="wrapper-middle container">
+    <div
+      (click)="reloadPage($event)"
+      routerLink="/user/notes"
+      class="my-notes d-flex shadow p-3"
+    >
+      <span><i aria-hidden="true" class="bi bi-person"></i></span>
+      <div class="container d-flex justify-content-center text-nowrap">
+        My Notes
+      </div>
+    </div>
+  </div>
+
+  <div class="container wrapper-bottom">
+    <div class="logout">
+      <button (click)="onLogout()" class="btn-logout">Logout</button>
+    </div>
+  </div>
+</div>

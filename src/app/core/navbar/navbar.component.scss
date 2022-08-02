@@ -1,0 +1,58 @@
+.wrapper {
+  margin-right: 20px;
+  height: 89vh;
+}
+
+.wrapper-top {
+  height: 20%;
+}
+
+.wrapper-middle {
+  height: 60%;
+}
+
+.wrapper-bottom {
+  height: 20%;
+}
+
+.user-profile {
+  display: flex;
+  // width: max-content;
+  padding: 10px 0 10px 10px;
+  cursor: pointer;
+  align-items: center;
+}
+.user-image {
+  width: 40%;
+}
+
+.user-image > img {
+  width: 60px;
+}
+.user-name {
+  //   display: flex;
+
+  font-size: larger;
+  //   justify-content: center;
+}
+
+.my-notes {
+  height: min-content;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-logout {
+  border: 0;
+  border-radius: 25px;
+  display: flex;
+  padding: 20px;
+  height: fit-content;
+  justify-content: center;
+  flex-basis: 100%;
+}
