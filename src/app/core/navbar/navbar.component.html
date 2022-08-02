@@ -1,14 +1,17 @@
 <div class="wrapper">
   <div class="container wrapper-top">
-    <div class="container-fluid border user-profile mt-5 shadow">
+    <div
+      routerLink="./user-details"
+      class="container-fluid border user-profile mt-5 shadow"
+    >
       <div class="user-image">
         <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+          src="https://www.computerhope.com/jargon/g/guest-user.jpg"
           alt=""
           class="rounded-circle"
         />
       </div>
-      <div class="user-name text-capitalize">subin gurung</div>
+      <div class="user-name text-capitalize">{{ username }}</div>
     </div>
   </div>
   <div class="wrapper-middle container">

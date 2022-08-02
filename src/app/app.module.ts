@@ -12,6 +12,7 @@ import { NotesModule } from './notes/notes.module';
 import { AuthenticationService } from './core/_services/authentication.service';
 import { NotesService } from './core/_services/notes.service';
 import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
+import { UserService } from './core/_services/user.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
   providers: [
     AuthenticationService,
     NotesService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

@@ -9,6 +9,7 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  username = this.authService.userValue['username'];
   constructor(
     private route: ActivatedRoute,
     private router: Router,

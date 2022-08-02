@@ -11,6 +11,12 @@ export class NotesService {
   private noteSubject: BehaviorSubject<Note>;
   public note: Observable<Note>;
 
+  // private selectedNote: BehaviorSubject<Note>;
+
+  // public get selectedNoteValue(): Note {
+  //   return this.selectedNote.value;
+  // }
+
   constructor(private _http: HttpClient) {}
 
   addNote(note: Note) {
@@ -27,5 +33,9 @@ export class NotesService {
 
   getNoteById(id) {
     return this._http.get<any>(`${environment.apiUrl}/api/notes/${id}`);
+  }
+
+  updateNoteById(id, note) {
+    return this._http.put<any>(`${environment.apiUrl}/api/notes/${id}`, note);
   }
 }
