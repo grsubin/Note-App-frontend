@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs';
+import { first, Subscription } from 'rxjs';
 import { NotesService } from 'src/app/core/_services/notes.service';
+import { SelectedNoteService } from 'src/app/core/_services/selected-note.service';
 import { Note } from 'src/app/_models/note';
 
 @Component({
@@ -17,39 +18,47 @@ export class NoteEditComponent implements OnInit {
   id: number;
   loading = false;
   submitted = false;
+  selectedNoteSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private notesService: NotesService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private selectedNoteService: SelectedNoteService
   ) {}
 
   ngOnInit(): void {
-    this.getNoteById();
+    this.selectedNoteSubscription =
+      this.selectedNoteService.getSelectedNote.subscribe({
+        next: (note) => {
+          this.note = note;
+          console.log(this.note);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     this.noteForm = this.formBuilder.group({
-      title: [''],
-      body: [''],
+      title: [this.note.title],
+      body: [this.note.body],
     });
   }
 
-  getNoteById() {
-    this.route.params.subscribe((data) => {
-      this.id = +data['note-title'].split('-')[0];
-      this.notesService.getNoteById(this.id).subscribe((data) => {
-        this.note = data;
-        console.log(data);
-      });
-    });
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    console.log('sub deleted');
+    this.selectedNoteSubscription.unsubscribe();
   }
+
   onSubmit() {
     this.submitted = true;
 
-    console.log('clicked');
     this.loading = true;
+    this.noteForm.value.guid = this.note.guid;
     this.notesService
-      .updateNoteById(this.id, this.noteForm.value)
+      .updateNoteById(this.note.id, this.noteForm.value)
       .pipe(first())
       .subscribe({
         next: () => {

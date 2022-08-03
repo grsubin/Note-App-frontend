@@ -16,6 +16,7 @@ import { UserService } from './core/_services/user.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { OnlineOfflineService } from './core/_services/online-offline.service';
+import { SelectedNoteService } from './core/_services/selected-note.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,7 @@ import { OnlineOfflineService } from './core/_services/online-offline.service';
     NotesService,
     UserService,
     OnlineOfflineService,
+    SelectedNoteService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

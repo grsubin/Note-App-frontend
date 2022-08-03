@@ -44,7 +44,10 @@ export class AddNoteComponent implements OnInit {
 
     this.loading = true;
     this.notesService
-      .addNote(this.noteForm.value)
+      .addNote({
+        title: this.noteForm.value.title,
+        body: this.noteForm.value.body,
+      })
       .pipe(first())
       .subscribe({
         next: () => {

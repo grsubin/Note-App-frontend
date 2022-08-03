@@ -1,12 +1,7 @@
 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="wrapper" action="">
   <div class="note-title">
     <h3>
-      <input
-        formControlName="title"
-        type="text"
-        name="title"
-        value="{{ note?.title }}"
-      />
+      <input formControlName="title" type="text" name="title" />
     </h3>
   </div>
   <div class="note-date-wrapper">
@@ -19,8 +14,7 @@
     </div>
   </div>
   <div class="note-body">
-    <textarea formControlName="body" name="body" value="{{ note?.note_body }}">
-    </textarea>
+    <textarea formControlName="body" name="body"> </textarea>
   </div>
   <button type="submit" class="btn-save-note">Save</button>
 </form>

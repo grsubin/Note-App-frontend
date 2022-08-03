@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Dexie from 'dexie';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable, of, Subject, subscribeOn } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as uuid from 'uuid';
 import { Note } from '../../_models/note';
@@ -46,11 +46,14 @@ export class NotesService {
           .get<any>(`${environment.apiUrl}/api/notes`)
           .subscribe((data) => {
             this.offlineNoteList = data;
-            this.offlineNoteList.forEach((note) => {
-              console.log('saving to IndexedDB: ');
-              console.log(note);
-              this.addToIndexedDb(note);
-            });
+            if (this.offlineNoteList) {
+              this.offlineNoteList.forEach((note) => {
+                console.log('saving to IndexedDB: ');
+                console.log(note);
+                this.addToIndexedDb(note);
+              });
+            }
+
             console.log(data);
           });
       }
@@ -59,9 +62,11 @@ export class NotesService {
   addNote(note) {
     if (!this.onlineOfflineService.isOnline) {
       note.guid = uuid.v4();
+      note.isCreatedOffline = true;
 
       this.addToIndexedDb(note);
     } else {
+      console.log(note);
       return this._http.post<Note>(`${environment.apiUrl}/api/notes`, note);
     }
   }
@@ -79,14 +84,19 @@ export class NotesService {
   }
 
   updateNoteById(id, note) {
-    return this._http.put<any>(`${environment.apiUrl}/api/notes/${id}`, note);
+    if (!this.onlineOfflineService.isOnline) {
+      this.updateToIndexDb(note.guid, note);
+    } else {
+      return this._http.put<any>(`${environment.apiUrl}/api/notes/${id}`, note);
+    }
   }
 
   private createDatabase() {
     this.db = new Dexie('NoteAppDatabase');
 
     this.db.version(1).stores({
-      notes: 'guid, title, body, isSynced, created_at, updated_at',
+      notes:
+        'guid, title, body, created_at, updated_at, isUpdatedOffline, isCreatedOffline',
     });
     this.db.open().catch((e) => {
       console.error('Open failed: ' + e);
@@ -110,17 +120,47 @@ export class NotesService {
       });
   }
 
-  async sendItemsFromIndexedDb() {
-    const allNotes = await this.db.notes.toArray();
-    allNotes.forEach((note) => {
-      this.addNote(note).subscribe({
-        next: () => {
-          this.toastr.success('', 'Syncing Notes');
+  updateToIndexDb(guid, note) {
+    note.isUpdatedOffline = true;
+    this.db.notes
+      .update(guid, note)
+      .then((updated) => {
+        if (updated) {
+          console.log(`Note ${guid} is updated`);
+          this.toastr.success('', 'Note Updated!');
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => this.router.navigate(['user/notes']));
-        },
+        } else {
+          console.log('Nothing was updated.');
+        }
+      })
+      .catch((e) => {
+        console.log(e.stack || e);
+        this.toastr.error('', e.stack || e);
       });
+  }
+
+  async sendItemsFromIndexedDb() {
+    const allNotes = await this.db.notes.toArray();
+    allNotes.forEach((note) => {
+      if (note.isUpdatedOffline && !note.isCreatedOffline) {
+        this.updateNoteById(note.id, note).subscribe({
+          next: () => {
+            this.toastr.success('', 'Synced Notes-updated');
+          },
+        });
+      } else {
+        this.addNote(note).subscribe({
+          next: () => {
+            this.toastr.success('', 'Synced Notes-added');
+          },
+        });
+      }
+
+      this.router
+        .navigateByUrl('/', { skipLocationChange: true })
+        .then(() => this.router.navigate(['user/notes']));
       this.db.notes.delete(note.guid).then(() => {
         console.log(`item ${note.guid} sent and deleted locally`);
       });

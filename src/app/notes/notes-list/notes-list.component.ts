@@ -29,12 +29,13 @@ export class NotesListComponent implements OnInit {
   getNotes() {
     if (this.onlineOfflineService.isOnline) {
       this.notesService.getAllNotes().subscribe((data) => {
-        console.log(data);
         this.noteList = data;
+        console.log(this.noteList);
       });
     } else {
       this.notesService.getAllIndexedNotes().then((result) => {
         this.noteList = result;
+        console.log(this.noteList);
       });
     }
   }
