@@ -41,7 +41,7 @@ export class AddNoteComponent implements OnInit {
     if (this.noteForm.invalid) {
       return;
     }
-    console.log('clicked');
+
     this.loading = true;
     this.notesService
       .addNote(this.noteForm.value)

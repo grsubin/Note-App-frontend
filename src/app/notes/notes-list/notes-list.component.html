@@ -12,11 +12,10 @@
       <div class="notes-list">
         <div
           *ngFor="let note of noteList"
-          routerLink="/user/notes/view/{{
-            note.id + '-' + note.title.split(' ').join('-')
-          }}"
+          routerLink="/user/notes/view/{{ note.title.split(' ').join('-') }}"
           routerLinkActive="active"
           class="note"
+          (click)="sendSelectedNote(note)"
         >
           <div class="note-top">
             <div class="note-date">

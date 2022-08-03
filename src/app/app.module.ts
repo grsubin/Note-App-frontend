@@ -15,6 +15,7 @@ import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
 import { UserService } from './core/_services/user.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { OnlineOfflineService } from './core/_services/online-offline.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,13 +35,14 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [
     AuthenticationService,
     NotesService,
     UserService,
+    OnlineOfflineService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
