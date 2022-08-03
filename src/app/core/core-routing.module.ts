@@ -4,28 +4,26 @@ import { UserdetailsComponent } from '../user/userdetails/userdetails.component'
 import { CoreComponent } from './core.component';
 
 const routes: Routes = [
-
   {
-    path: '',component: CoreComponent,
+    path: '',
+    component: CoreComponent,
     children: [
       {
         path: 'notes',
-        loadChildren: () => import('../notes/notes.module').then(m => m.NotesModule)
+        loadChildren: () =>
+          import('../notes/notes.module').then((m) => m.NotesModule),
       },
       {
-        path: '', 
-        loadChildren: () => import('../user/user.module').then(m => m.UserModule)
+        path: '',
+        loadChildren: () =>
+          import('../user/user.module').then((m) => m.UserModule),
       },
     ],
-  }
-
-
-
-
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreRoutingModule { }
+export class CoreRoutingModule {}

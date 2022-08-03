@@ -13,6 +13,8 @@ import { AuthenticationService } from './core/_services/authentication.service';
 import { NotesService } from './core/_services/notes.service';
 import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
 import { UserService } from './core/_services/user.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,12 @@ import { UserService } from './core/_services/user.service';
     ToastrModule.forRoot({
       timeOut: 1000,
       preventDuplicates: true,
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [

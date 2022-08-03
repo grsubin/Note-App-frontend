@@ -7,6 +7,12 @@ import { UserdetailsComponent } from './user/userdetails/userdetails.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'user',
+  },
+  {
+    path: '',
+    canActivate: [UserGuard],
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule

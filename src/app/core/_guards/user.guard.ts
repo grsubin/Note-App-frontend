@@ -28,6 +28,11 @@ export class UserGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    if (localStorage.getItem('currentUser')) {
+      this.router.navigate(['/user'], {
+        queryParams: { userReturnUrl: state.url },
+      });
+    }
     return true;
   }
   canActivateChild(

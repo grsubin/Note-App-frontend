@@ -11,17 +11,19 @@ import { User } from 'src/app/_models/user';
 })
 export class UserdetailsComponent implements OnInit {
   username = this.authService.userValue.username;
-  user: Observable<any>;
+  user: any;
   constructor(
     private authService: AuthenticationService,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.getUser(this.username);
+    this.getUser(this.username);
   }
 
   getUser(username) {
-    return this.userService.findUserByUsername(username);
+    return this.userService.findUserByUsername(username).subscribe((data) => {
+      this.user = data;
+    });
   }
 }

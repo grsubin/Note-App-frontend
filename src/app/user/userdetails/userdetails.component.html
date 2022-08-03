@@ -6,32 +6,32 @@
   <div class="user-info">
     <div class="username">
       <label for="Name">Username: </label>
-      <div class="username-value">{{ (user | async)?.username }}</div>
+      <div class="username-value">{{ user?.username }}</div>
     </div>
 
     <div class="name">
       <div class="firstname">
         <label for="First Name">First Name: </label>
         <div class="firstname-value">
-          {{ (user | async)?.first_name | titlecase }}
+          {{ user?.first_name | titlecase }}
         </div>
       </div>
       <div class="lastname">
         <label for="Last Name">Last Name: </label>
         <div class="lastname-value">
-          {{ (user | async)?.last_name | titlecase }}
+          {{ user?.last_name | titlecase }}
         </div>
       </div>
     </div>
 
     <div class="email">
       <label for="Email">Email: </label>
-      <div class="email-value">{{ (user | async)?.email }}</div>
+      <div class="email-value">{{ user?.email }}</div>
     </div>
 
     <div class="phone">
       <label for="Phone ">Phone: </label>
-      <div class="phone-value">{{ (user | async)?.phone }}</div>
+      <div class="phone-value">{{ user?.phone }}</div>
     </div>
   </div>
 </div>
