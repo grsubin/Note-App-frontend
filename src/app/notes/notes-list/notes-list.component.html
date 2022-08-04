@@ -25,7 +25,10 @@
               }}
             </div>
             <div class="note-delete">
-              <button (click)="onDeleteNote(note.id)" class="btn-delete-note">
+              <button
+                (click)="onDeleteNote(note.id, note)"
+                class="btn-delete-note"
+              >
                 <span><i aria-hidden="true" class="bi bi-trash3"></i></span>
               </button>
             </div>

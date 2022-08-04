@@ -96,7 +96,7 @@ export class NotesService {
 
     this.db.version(1).stores({
       notes:
-        'guid, title, body, created_at, updated_at, isUpdatedOffline, isCreatedOffline',
+        'guid, title, body, created_at, updated_at, isUpdatedOffline, isCreatedOffline, isDeletedOffline',
     });
     this.db.open().catch((e) => {
       console.error('Open failed: ' + e);
@@ -144,10 +144,20 @@ export class NotesService {
   async sendItemsFromIndexedDb() {
     const allNotes = await this.db.notes.toArray();
     allNotes.forEach((note) => {
-      if (note.isUpdatedOffline && !note.isCreatedOffline) {
+      if (
+        note.isUpdatedOffline &&
+        !note.isCreatedOffline &&
+        !note.isDeletedOffline
+      ) {
         this.updateNoteById(note.id, note).subscribe({
           next: () => {
             this.toastr.success('', 'Synced Notes-updated');
+          },
+        });
+      } else if (note.isDeletedOffline) {
+        this.deleteNote(note.id).subscribe({
+          next: () => {
+            this.toastr.success('', 'Synced Notes-deleted');
           },
         });
       } else {
@@ -158,12 +168,19 @@ export class NotesService {
         });
       }
 
-      this.router
-        .navigateByUrl('/', { skipLocationChange: true })
-        .then(() => this.router.navigate(['user/notes']));
       this.db.notes.delete(note.guid).then(() => {
         console.log(`item ${note.guid} sent and deleted locally`);
       });
+    });
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate(['user/notes']));
+  }
+
+  public deleteIndexedNoteByGuid(guid) {
+    this.db.notes.delete(guid).then(() => {
+      this.toastr.success('', 'Note Deleted!');
+      console.log(`item ${guid} sent and deleted locally`);
     });
   }
 

@@ -34,25 +34,42 @@ export class NotesListComponent implements OnInit {
       });
     } else {
       this.notesService.getAllIndexedNotes().then((result) => {
-        this.noteList = result;
+        if (result) {
+          this.noteList = result.filter((note) => {
+            return !note.isDeletedOffline;
+          });
+        }
+
         console.log(this.noteList);
       });
     }
   }
 
-  onDeleteNote(id) {
+  onDeleteNote(id, note) {
     if (confirm('Are you sure to delete?')) {
-      this.notesService.deleteNote(id).subscribe({
-        next: () => {
-          this.toastr.success('', 'Note Deleted!');
+      if (this.onlineOfflineService.isOnline) {
+        this.notesService.deleteNote(id).subscribe({
+          next: () => {
+            this.toastr.success('', 'Note Deleted!');
+            this.router
+              .navigateByUrl('/', { skipLocationChange: true })
+              .then(() => this.router.navigate(['user/notes']));
+          },
+          error: (error) => {
+            this.toastr.error('', error.error?.message);
+          },
+        });
+      } else {
+        if (id) {
+          note.isDeletedOffline = true;
+          this.notesService.updateToIndexDb(note.guid, note);
+        } else {
+          this.notesService.deleteIndexedNoteByGuid(note.guid);
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => this.router.navigate(['user/notes']));
-        },
-        error: (error) => {
-          this.toastr.error('', error.error?.message);
-        },
-      });
+        }
+      }
     }
   }
 
