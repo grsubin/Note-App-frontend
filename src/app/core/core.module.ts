@@ -6,19 +6,9 @@ import { NotesModule } from '../notes/notes.module';
 import { UserModule } from '../user/user.module';
 import { CoreRoutingModule } from './core-routing.module';
 
-
-
-
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    CoreComponent
-  ],
-  imports: [
-    CommonModule,
-    CoreRoutingModule
-  ],exports: [
-    NavbarComponent
-  ]
+  declarations: [NavbarComponent, CoreComponent],
+  imports: [CommonModule, CoreRoutingModule],
+  exports: [NavbarComponent],
 })
-export class CoreModule { }
+export class CoreModule {}
