@@ -17,11 +17,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { OnlineOfflineService } from './core/_services/online-offline.service';
 import { SelectedNoteService } from './core/_services/selected-note.service';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component.ts.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CalendarComponent, CalendarHeaderComponent],
   imports: [
     BrowserModule,
+    NgbModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -37,6 +43,10 @@ import { SelectedNoteService } from './core/_services/selected-note.service';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
+    }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
     }),
   ],
   providers: [
