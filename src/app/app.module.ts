@@ -21,7 +21,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from './calendar/calendar.component';
-import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component.ts.component';
+import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, CalendarComponent, CalendarHeaderComponent],
@@ -34,6 +35,7 @@ import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-hea
     AuthenticationModule,
     UserModule,
     NotesModule,
+    MatProgressBarModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       preventDuplicates: true,

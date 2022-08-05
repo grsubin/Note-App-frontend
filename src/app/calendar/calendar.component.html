@@ -1,6 +1,12 @@
 <div class="wrapper">
   <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
   </mwl-demo-utils-calendar-header>
+  <mat-progress-bar
+    *ngIf="isLoading$ | async"
+    mode="buffer"
+    style="position: absolute"
+  >
+  </mat-progress-bar>
   <ng-template #loading>
     <div class="text-center">
       <i class="fas fa-spin fa-spinner fa-5x"></i> <br />

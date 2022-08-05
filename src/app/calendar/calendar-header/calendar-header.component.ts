@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mwl-demo-utils-calendar-header',

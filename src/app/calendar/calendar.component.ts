@@ -16,7 +16,6 @@ import {
   filter,
   first,
   map,
-  mapTo,
   merge,
   Observable,
   ReplaySubject,
@@ -60,11 +59,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this._showLoaderEvents$ = this.router.events.pipe(
       filter((e) => e instanceof ResolveStart),
-      map((v) => true)
+      map(() => true)
     );
     this._hideLoaderEvents$ = this.router.events.pipe(
       filter((e) => e instanceof ResolveEnd),
-      map((v) => false)
+      map(() => false)
     );
     this.isLoading$ = merge(this._hideLoaderEvents$, this._showLoaderEvents$);
     this.loadNotesAsEvents();
@@ -99,40 +98,6 @@ export class CalendarComponent implements OnInit {
       });
     }
   }
-  // events: CalendarEvent[] = [
-  //   {
-  //     title: 'Editable event',
-  //     color: colors.yellow,
-  //     start: subDays(startOfDay(new Date()), 1),
-  //     actions: [
-  //       {
-  //         label: '<i class=" bi bi-pencil"></i>',
-  //         onClick: ({ event }: { event: CalendarEvent }): void => {
-  //           console.log('Edit event', event);
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: 'Deletable event',
-  //     color: colors.blue,
-  //     start: new Date(),
-  //     actions: [
-  //       {
-  //         label: '<i class="fas fa-fw fa-trash-alt"></i>',
-  //         onClick: ({ event }: { event: CalendarEvent }): void => {
-  //           this.events = this.events.filter((iEvent) => iEvent !== event);
-  //           console.log('Event deleted', event);
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: 'Non editable and deletable event',
-  //     color: colors.red,
-  //     start: new Date(),
-  //   },
-  // ];
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
