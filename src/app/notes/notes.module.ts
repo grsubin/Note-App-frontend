@@ -6,7 +6,9 @@ import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NpDatepickerModule } from 'angular-nepali-datepicker';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddNoteComponent,
     NoteEditComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, NotesRoutingModule],
-  exports: [NoteDetailsComponent, NotesListComponent],
+  imports: [
+    CommonModule,
+    FlatpickrModule.forRoot(),
+    ReactiveFormsModule,
+    NotesRoutingModule,
+    NpDatepickerModule,
+    FormsModule,
+  ],
+  exports: [NoteDetailsComponent, NotesListComponent, AddNoteComponent],
 })
 export class NotesModule {}

@@ -5,18 +5,24 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { NotesService } from '../_services/notes.service';
+import { OnlineOfflineService } from '../_services/online-offline.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotesResolver implements Resolve<any> {
-  constructor(private notesService: NotesService) {}
+  constructor(
+    private notesService: NotesService,
+    private onlineOfflineService: OnlineOfflineService
+  ) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    return this.notesService.getAllNotes();
+    if (this.onlineOfflineService.isOnline) {
+      return this.notesService.getAllNotes();
+    }
   }
 }

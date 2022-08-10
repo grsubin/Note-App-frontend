@@ -23,6 +23,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NpDatepickerModule } from 'angular-nepali-datepicker';
 
 @NgModule({
   declarations: [AppComponent, CalendarComponent, CalendarHeaderComponent],
@@ -30,12 +33,15 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     BrowserModule,
     NgbModalModule,
     AppRoutingModule,
+
     BrowserAnimationsModule,
     HttpClientModule,
     AuthenticationModule,
     UserModule,
     NotesModule,
+    FormsModule,
     MatProgressBarModule,
+    FlatpickrModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 1000,
       preventDuplicates: true,
