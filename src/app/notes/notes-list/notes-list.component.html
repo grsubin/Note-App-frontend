@@ -1,5 +1,5 @@
 <div class="row min-wrapper">
-  <div class="border-start col-5">
+  <div class="wrapper-left col-5">
     <div class="wrapper">
       <div class="title">
         <h2><strong>My Notes</strong></h2>
@@ -12,7 +12,9 @@
       <div class="notes-list">
         <div
           *ngFor="let note of noteList"
-          routerLink="/user/notes/view/{{ note.title.split(' ').join('-') }}"
+          routerLink="/user/notes/view/{{
+            note.id + '-' + note.title.split(' ').join('-')
+          }}"
           routerLinkActive="active"
           class="note"
           (click)="sendSelectedNote(note)"
@@ -38,5 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="border-start col-7"><router-outlet></router-outlet></div>
+  <div class="wrapper-right border-start col-7">
+    <router-outlet></router-outlet>
+  </div>
 </div>
