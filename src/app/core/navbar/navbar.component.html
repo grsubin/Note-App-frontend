@@ -2,7 +2,8 @@
   <div class="container wrapper-top">
     <div
       routerLink="./user-details"
-      class="container-fluid border user-profile mt-5 shadow"
+      name="user-profile"
+      class="container-fluid border user-profile shadow"
     >
       <div class="user-image">
         <img
@@ -18,19 +19,22 @@
     <div
       (click)="reloadPage($event)"
       routerLink="/user/notes"
-      class="my-notes d-flex shadow p-3"
+      class="my-notes shadow p-3"
     >
-      <span><i aria-hidden="true" class="bi bi-person"></i></span>
-      <div class="container d-flex justify-content-center text-nowrap">
+      <span><i aria-hidden="true" class="bi bi-stickies"></i></span>
+      <div
+        id="my-notes-text"
+        class="container justify-content-center text-nowrap"
+      >
         My Notes
       </div>
     </div>
-    <div
-      routerLink="/user/calendar"
-      class="calendar d-flex shadow p-3"
-    >
+    <div routerLink="/user/calendar" class="calendar shadow p-3">
       <span><i aria-hidden="true" class="bi bi-calendar"></i></span>
-      <div class="container d-flex justify-content-center text-nowrap">
+      <div
+        id="calendar-text"
+        class="container justify-content-center text-nowrap"
+      >
         Calendar
       </div>
     </div>

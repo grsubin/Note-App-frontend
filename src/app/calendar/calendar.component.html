@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper-calendar">
   <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
   </mwl-demo-utils-calendar-header>
   <mat-progress-bar
@@ -7,31 +7,56 @@
     style="position: absolute"
   >
   </mat-progress-bar>
+
   <ng-template #loading>
     <div class="text-center">
       <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
       Loading events...
     </div>
   </ng-template>
+
+  <div *ngIf="show" class="add-note-box">
+    <div class="close">
+      <span (click)="closeAddBox()"><i class="bi bi-x"></i></span>
+    </div>
+
+    <app-add-note
+      [start_date]="start_date"
+      [end_date]="end_date"
+      class="add-note"
+    ></app-add-note>
+  </div>
+
   <div [ngSwitch]="view">
     <mwl-calendar-month-view
       *ngSwitchCase="'month'"
       [viewDate]="viewDate"
       [events]="events"
       (dayClicked)="dayClicked($event.day)"
+      (beforeViewRender)="beforeMonthViewRender($event)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
       [activeDayIsOpen]="activeDayIsOpen"
+      [refresh]="refresh"
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
       *ngSwitchCase="'week'"
       [viewDate]="viewDate"
       [events]="events"
+      (beforeViewRender)="beforeWeekOrDayViewRender($event)"
+      (hourSegmentClicked)="hourSegmentClicked($event.date)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      [refresh]="refresh"
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view
       *ngSwitchCase="'day'"
       [viewDate]="viewDate"
       [events]="events"
+      (beforeViewRender)="beforeWeekOrDayViewRender($event)"
+      (hourSegmentClicked)="hourSegmentClicked($event.date)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      [refresh]="refresh"
     >
     </mwl-calendar-day-view>
   </div>
