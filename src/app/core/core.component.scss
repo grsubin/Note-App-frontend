@@ -5,32 +5,46 @@ $grey: #cccccc;
 .wrapper {
   background: #fff;
   border-top: 5px solid $yellow;
+  margin-top: 40px;
+  margin-left: 15px;
+
+  border-left: solid lightgray;
+  border-bottom: solid lightgray;
+
+  // max-width: 100%;
 }
-
-// .min-wrapper {
-//   height: 89vh;
-// }
-
-// .nav-bar {
-//   // min-width: 220px;
-//   width: max-content;
-// }
 
 .min-wrapper {
   display: flex;
+  min-height: 95vh;
+  // height: 100%;
 }
 
 .nav-bar {
   width: max-content;
 }
 
-@media (max-width: 570px) {
-  .min-wrapper {
-    flex-direction: column;
-    // align-items: center;
-    min-width: max-content;
-  }
+//tablets
+@media (max-width: 1130px) {
   .nav-bar {
     width: 100%;
+  }
+
+  .min-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 575px) {
+  .wrapper {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    flex: 0 0 auto;
+    width: 83.33333333%;
   }
 }

@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .wrapper > div {
@@ -20,7 +21,9 @@
   border: 0;
   border-radius: 5px;
 }
-
+.note-title > h3 > input {
+  width: 100%;
+}
 .btn-save-note {
   align-self: flex-start;
   padding: 10px;
@@ -31,4 +34,15 @@
 
 .btn-save-note:hover {
   filter: brightness(85%);
+}
+
+.start_date,
+.end_date {
+  display: flex;
+  margin: 10px;
+  justify-content: space-evenly;
+}
+
+.date_input {
+  margin-left: 30px;
 }

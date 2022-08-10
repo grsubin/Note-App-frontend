@@ -1,24 +1,37 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-right: 20px;
-  height: 89vh;
+  border-right: solid lightgray;
+  padding-right: 15px;
+
+  height: 100%;
 }
 
 .wrapper-top {
   height: 20%;
+  max-width: 180px;
 }
 
 .wrapper-middle {
   height: 60%;
 }
+.wrapper-middle > div {
+  margin-bottom: 20px;
+}
 
 .wrapper-bottom {
   height: 20%;
+  display: flex;
+  justify-content: end;
 }
 
 .user-profile {
   display: flex;
   // width: max-content;
   padding: 10px 0 10px 10px;
+  margin-top: 45px;
   cursor: pointer;
   align-items: center;
 }
@@ -31,20 +44,24 @@
 }
 .user-name {
   //   display: flex;
-  padding-left: 10px;
+  padding-left: 15px;
   font-size: larger;
   //   justify-content: center;
 }
 
-.my-notes {
+.my-notes,
+.calendar,
+.logout {
+  display: flex;
   height: min-content;
-  min-width: 150px;
+  max-width: 100%;
   cursor: pointer;
 }
 
 .logout {
   display: flex;
   justify-content: center;
+  min-width: 180px;
 }
 
 .btn-logout {
@@ -55,4 +72,69 @@
   height: fit-content;
   justify-content: center;
   flex-basis: 100%;
+}
+
+.user-profile:hover,
+.btn-logout:hover,
+.my-notes:hover,
+.calendar:hover {
+  background-color: lightgray;
+  filter: brightness(85%);
+}
+
+//tablets
+@media (max-width: 1130px) {
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    width: 100%;
+    align-items: center;
+    font-size: 1em;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 0;
+    border-bottom: inset lightgray;
+  }
+  .wrapper-top {
+    display: flex;
+    height: 100%;
+  }
+
+  .user-profile {
+    margin: 0;
+    padding-right: 10px;
+  }
+
+  .wrapper-middle {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .wrapper-middle > div {
+    margin: 0;
+  }
+
+  img {
+    max-width: 35px;
+  }
+}
+
+// @media (max-width: 1130px) {
+//   .wrapper {
+//     min-width: 350px;
+//   }
+// }
+//mobile
+@media (max-width: 766px) {
+  #my-notes-text {
+    display: none;
+  }
+  #calendar-text {
+    display: none;
+  }
+}
+
+//mobile
+@media (max-width: 500px) {
 }
