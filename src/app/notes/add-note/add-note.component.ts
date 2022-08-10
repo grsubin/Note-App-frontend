@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,10 @@ import { NotesService } from 'src/app/core/_services/notes.service';
   styleUrls: ['./add-note.component.scss'],
 })
 export class AddNoteComponent implements OnInit {
+  @Input() start_date: Date;
+  @Input() end_date: Date;
   noteForm: FormGroup;
+  date = new Date();
 
   loading = false;
   submitted = false;
@@ -28,6 +31,8 @@ export class AddNoteComponent implements OnInit {
     this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
       body: [''],
+      start_date: [''],
+      end_date: [''],
     });
   }
 
@@ -47,15 +52,17 @@ export class AddNoteComponent implements OnInit {
       .addNote({
         title: this.noteForm.value.title,
         body: this.noteForm.value.body,
+        start_date: this.start_date,
+        end_date: this.end_date,
       })
       .pipe(first())
       .subscribe({
         next: () => {
           this.toastr.success('', 'Note Added!');
-          console.log(this.route);
+
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => this.router.navigate(['user/notes']));
+            .then(() => this.router.navigate(['/user/notes']));
         },
       });
   }

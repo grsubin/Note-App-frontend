@@ -17,5 +17,33 @@
       placeholder=" Note description..."
     ></textarea>
   </div>
+  <div class="date">
+    <div class="start_date">
+      <label for="start date">Start date</label>
+      <input
+        type="text"
+        mwlFlatpickr
+        type="date_input"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [(ngModel)]="start_date"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+    <div class="end_date">
+      <label for="end date">End date</label>
+      <input
+        type="text"
+        mwlFlatpickr
+        type="date_input"
+        [altInput]="true"
+        [convertModelValue]="true"
+        dateFormat="Y-m-dTH:i"
+        [(ngModel)]="end_date"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+  </div>
+
   <button type="submit" class="btn-save-note">Save</button>
 </form>
