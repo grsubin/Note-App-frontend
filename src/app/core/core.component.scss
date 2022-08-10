@@ -28,11 +28,16 @@ $grey: #cccccc;
 @media (max-width: 1130px) {
   .nav-bar {
     width: 100%;
+    font-size: 1.1rem;
   }
 
   .min-wrapper {
     display: flex;
     flex-direction: column;
+  }
+  .content {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }
 
@@ -42,9 +47,9 @@ $grey: #cccccc;
   }
 }
 
-@media (max-width: 576px) {
-  .content {
-    flex: 0 0 auto;
-    width: 83.33333333%;
-  }
-}
+// @media (max-width: 576px) {
+//   .content {
+//     flex: 0 0 auto;
+//     width: 83.33333333%;
+//   }
+// }

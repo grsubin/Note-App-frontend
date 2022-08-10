@@ -5,9 +5,10 @@ import { CoreComponent } from './core.component';
 import { NotesModule } from '../notes/notes.module';
 import { UserModule } from '../user/user.module';
 import { CoreRoutingModule } from './core-routing.module';
+import { ClickOutsideDirective } from './_directive/clickOutside.directive';
 
 @NgModule({
-  declarations: [NavbarComponent, CoreComponent],
+  declarations: [NavbarComponent, CoreComponent, ClickOutsideDirective],
   imports: [CommonModule, CoreRoutingModule],
   exports: [NavbarComponent],
 })

@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'user',
+    redirectTo: 'user/notes',
   },
   {
     path: '',
@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: '**',
     canActivateChild: [UserGuard],
-    redirectTo: 'user',
+    redirectTo: 'user/notes',
   },
 ];
 

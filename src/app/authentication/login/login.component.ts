@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
               data['username'].slice(1)
           );
           const returnUrl =
-            this.route.snapshot.queryParams['userReturnUrl'] || '/user';
+            this.route.snapshot.queryParams['userReturnUrl'] || '/user/notes';
 
           console.log(returnUrl);
           this.router.navigateByUrl(returnUrl);

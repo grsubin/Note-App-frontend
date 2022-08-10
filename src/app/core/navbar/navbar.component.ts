@@ -10,6 +10,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
   username = this.authService.userValue['username'];
+  sideNav: boolean = false;
+  dropDown: boolean;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,5 +34,33 @@ export class NavbarComponent implements OnInit {
       .navigateByUrl('/', { skipLocationChange: true })
       .then(() => this.router.navigate(['user/notes']));
     console.log(this.router.url);
+  }
+
+  menuClicked: boolean;
+
+  openNav() {
+    this.sideNav = true;
+    this.menuClicked = true;
+  }
+  closeNav() {
+    this.sideNav = false;
+  }
+
+  showDropDown() {
+    this.dropDown = !this.dropDown;
+  }
+
+  clickedOutsideDropDown(): void {
+    this.dropDown = false;
+    console.log('dropdoen');
+  }
+
+  clickedOutsideSideNav() {
+    if (this.sideNav && this.menuClicked == true) {
+      this.menuClicked = false;
+    } else {
+      this.closeNav();
+    }
+    console.log('hLCie');
   }
 }

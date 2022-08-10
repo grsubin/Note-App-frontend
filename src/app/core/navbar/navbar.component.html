@@ -1,3 +1,13 @@
+<div class="nav">
+  <span
+    class="menu"
+    style="font-size: 30px; cursor: pointer"
+    (click)="openNav()"
+    >&#9776;
+  </span>
+  <div class="app-title"><h4>Note App</h4></div>
+</div>
+
 <div class="wrapper">
   <div class="container wrapper-top">
     <div
@@ -43,6 +53,76 @@
   <div class="container wrapper-bottom">
     <div class="logout">
       <button (click)="onLogout()" class="btn-logout">Logout</button>
+    </div>
+  </div>
+</div>
+
+<div
+  (clickOutside)="clickedOutsideSideNav()"
+  id="mySidenav"
+  class="sidenav"
+  [ngStyle]="
+    sideNav
+      ? { width: '250px', 'overflow-x': 'visible' }
+      : { width: '0px', 'overflow-x': 'hidden' }
+  "
+>
+  <a
+    href="javascript:void(0)"
+    id="closebtn"
+    class="closebtn"
+    (click)="closeNav()"
+    >&times;</a
+  >
+  <div class="container wrapper-top">
+    <div name="user-profile" class="container-fluid border user-profile shadow">
+      <div class="user" routerLink="./user-details">
+        <div class="user-image">
+          <img
+            src="https://www.computerhope.com/jargon/g/guest-user.jpg"
+            alt=""
+            class="rounded-circle"
+          />
+        </div>
+        <div class="user-name text-capitalize">{{ username }}</div>
+      </div>
+
+      <div
+        class="dropdown"
+        (clickOutside)="clickedOutsideDropDown()"
+        (click)="showDropDown()"
+      >
+        <span><i class="bi bi-caret-down-fill"></i> </span>
+
+        <div *ngIf="dropDown" id="myDropdown" class="dropdown-content">
+          <a (click)="onLogout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper-middle container">
+    <div
+      (click)="reloadPage($event)"
+      routerLink="/user/notes"
+      class="my-notes shadow p-3"
+    >
+      <span><i aria-hidden="true" class="bi bi-stickies"></i></span>
+      <div
+        id="my-notes-text"
+        class="container justify-content-center text-nowrap"
+      >
+        My Notes
+      </div>
+    </div>
+    <div routerLink="/user/calendar" class="calendar shadow p-3">
+      <span><i aria-hidden="true" class="bi bi-calendar"></i></span>
+      <div
+        id="calendar-text"
+        class="container justify-content-center text-nowrap"
+      >
+        Calendar
+      </div>
     </div>
   </div>
 </div>
