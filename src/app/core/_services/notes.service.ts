@@ -129,8 +129,8 @@ export class NotesService {
           console.log(`Note ${guid} is updated`);
           this.toastr.success('', 'Note Updated!');
           this.router
-            .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => this.router.navigate(['user/notes']));
+            .navigateByUrl('/user', { skipLocationChange: true })
+            .then(() => this.router.navigate(['/notes']));
         } else {
           console.log('Nothing was updated.');
         }

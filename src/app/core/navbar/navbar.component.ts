@@ -31,8 +31,8 @@ export class NavbarComponent implements OnInit {
     event.preventDefault();
 
     this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigate(['user/notes']));
+      .navigateByUrl('/user', { skipLocationChange: true })
+      .then(() => this.router.navigate(['/notes']));
     console.log(this.router.url);
   }
 

@@ -52,8 +52,8 @@ export class NotesListComponent implements OnInit {
           next: () => {
             this.toastr.success('', 'Note Deleted!');
             this.router
-              .navigateByUrl('/', { skipLocationChange: true })
-              .then(() => this.router.navigate(['user/notes']));
+              .navigateByUrl('/user', { skipLocationChange: true })
+              .then(() => this.router.navigate(['/notes']));
           },
           error: (error) => {
             this.toastr.error('', error.error?.message);
@@ -66,8 +66,8 @@ export class NotesListComponent implements OnInit {
         } else {
           this.notesService.deleteIndexedNoteByGuid(note.guid);
           this.router
-            .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => this.router.navigate(['user/notes']));
+            .navigateByUrl('/user', { skipLocationChange: true })
+            .then(() => this.router.navigate(['/notes']));
         }
       }
     }

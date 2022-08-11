@@ -65,8 +65,8 @@ export class NoteEditComponent implements OnInit {
           this.toastr.success('', 'Note Updated!');
           console.log(this.route);
           this.router
-            .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => this.router.navigate(['/user/notes']));
+            .navigateByUrl('/user', { skipLocationChange: true })
+            .then(() => this.router.navigate(['/notes']));
         },
       });
   }
